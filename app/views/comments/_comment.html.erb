@@ -8,6 +8,6 @@
     <%= comment.body %>
   </p>
   <p>
-    <%= link_to "Destroy Comment", [comment.article, comment], data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+    <%= link_to "Destroy Comment", article_comment_path(article_id:comment.article_id,id:comment.id), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
   </p>
 <% end %>

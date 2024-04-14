@@ -15,7 +15,7 @@
   </div>
   <div>
     <%= form.label :status %><br>
-    <%= form.select :status, Visible::VALID_STATUSES, selected:article.status || 'public' %>
+    <%= form.select :status, Article.statuses.keys, selected:article.status || 'displayed' %>
     <div>
       <%= form.submit %>
     </div>
