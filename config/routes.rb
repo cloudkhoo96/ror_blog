@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   root "articles#index"
   
+  resource :registration
+  resource :session
+  resource :password_reset
+  resource :password
+
   resources :articles do
     resources :comments, module: "articles"
   end
