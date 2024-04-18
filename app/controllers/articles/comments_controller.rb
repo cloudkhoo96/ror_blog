@@ -1,4 +1,5 @@
 class Articles::CommentsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_article, only: [:create, :destroy]
 
   def create
