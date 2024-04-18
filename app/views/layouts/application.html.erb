@@ -10,6 +10,17 @@
   </head>
   <body>
     <%= link_to "Home", root_path %>
+    <% if !user_signed_in? %>
+      <ul>
+        <li><%= link_to "Sign Up", new_user_registration_path %></li>
+        <li><%= link_to "Sign In", new_user_session_path %></li>
+      </ul>
+    <% else %>
+    <ul>
+      <li><%= link_to "Edit Account", edit_user_registration_path %></li>
+      <li><%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete } %></li>
+    </ul>
+    <% end %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
