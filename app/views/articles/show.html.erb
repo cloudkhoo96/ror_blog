@@ -4,10 +4,11 @@
   <li><%= link_to "Edit", edit_article_path(@article) %></li>
   <li><%= link_to "Destroy", article_path(@article), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></li>
 </ul>
-
-<h2>Add a comment</h2>
-<%= render 'comments/form' %>
-
-<h2>Comments (<%= @article.comments.length %>)</h2>
-
+<% if !user_signed_in? %>
+  <strong>Please <%= link_to "sign in", new_user_session_path %> to comment.</strong>
+<% else %>
+  <h2>Add a comment</h2>
+  <%= render 'comments/form' %>
+<% end %>
+<h2><% if @article.comments.length > 1 %> Comments <% else %> Comment <% end %>(<%= @article.comments.length %>)</h2>
 <%= render @article.comments %>
