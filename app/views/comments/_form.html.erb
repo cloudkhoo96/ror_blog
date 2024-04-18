@@ -1,4 +1,4 @@
-<%= form_with url:article_comments_path(article_id:@article.id), model: [ @article, @article.comments.build ] do |form| %>
+<%= form_with url:article_comments_path(article_id:@article.id), model: Comment.new do |form| %>
   <p>
     <%= form.label :commenter %><br>
     <%= form.text_field :commenter %>
