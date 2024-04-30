@@ -4,11 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  attr_writer :login
   validate :validate_username
 
   def login
-    @login || self.username || self.email
+    self.username || self.email
   end
 
   def self.find_for_database_authentication(warden_conditions)
