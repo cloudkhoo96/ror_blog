@@ -3,8 +3,14 @@ class Articles::CommentsController < ApplicationController
   before_action :set_article, only: [:create, :destroy]
 
   def create
-    @comment = @article.comments.create(comment_params)
-    redirect_to article_path(@article)
+    @comment = @article.comments.new(comment_params)
+    @comment.user = current_user
+
+    if @comment.save
+      redirect_to article_path(@article)
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def destroy
@@ -16,7 +22,7 @@ class Articles::CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:commenter, :body, :status)
+    params.require(:comment).permit(:body, :status)
   end
 
   def set_article
