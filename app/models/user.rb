@@ -8,9 +8,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validate :validate_username
+  attr_writer :login
 
   def login
-    self.username || self.email
+    @login || self.username || self.email
   end
 
   def self.find_for_database_authentication(warden_conditions)
