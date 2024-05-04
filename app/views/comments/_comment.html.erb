@@ -1,12 +1,5 @@
 <% unless comment.archived? %>
-  <p>
-    <strong>Commenter:</strong>
-    <% if comment.user.nil? %>
-      "Deleted User"
-    <% else %>
-    <%= comment.user.username %>
-    <% end %>
-  </p>
+ <%= display_author(comment) %>
   <p>
     <strong>Comment:</strong>
     <%= comment.body %>
