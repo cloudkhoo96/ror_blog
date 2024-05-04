@@ -1,8 +1,5 @@
 <% unless comment.archived? %>
-  <p>
-    <strong>Commenter:</strong>
-    <%= comment.user.username %>
-  </p>
+ <%= display_author(comment.user) %>
   <p>
     <strong>Comment:</strong>
     <%= comment.body %>
