@@ -1,5 +1,5 @@
 <% unless comment.archived? %>
- <%= display_author(comment) %>
+ <%= display_author(comment.user) %>
   <p>
     <strong>Comment:</strong>
     <%= comment.body %>

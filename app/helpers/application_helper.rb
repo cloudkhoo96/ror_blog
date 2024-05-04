@@ -1,13 +1,12 @@
 module ApplicationHelper
-    def display_author(content)
-      author_string = "<p>Author: "
-      if content.user.nil?
+    def display_author(content_user)
+      author_string = "Author: "
+      if content_user.nil?
         author_string += "Deleted User"
       else
-        author_string += content.user.username
+        author_string += content_user.username
       end
-      author_string += "</p>"
-      author_string.html_safe
+      content_tag(:p, author_string)
     end
   end
   
