@@ -1,16 +1,10 @@
-class ArticlePolicy
-  attr_reader :user, :article
-
-  def initialize(user, article)
-    @user = user
-    @article = article
-  end
+class ArticlePolicy < ApplicationPolicy
 
   def update?
-    article.user == user
+    user == record.try(:user)
   end
 
   def destroy?
-    article.user == user
+    user == record.try(:user)
   end
 end
