@@ -27,6 +27,7 @@ class ArticlesController < ApplicationController
   end
 
   def update
+    authorize @article
     if @article.update(article_params)
       redirect_to @article
     else
@@ -35,9 +36,12 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
+    authorize @article
     @article.destroy
     redirect_to root_path, status: :see_other
   end
+
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   private
 
@@ -47,5 +51,10 @@ class ArticlesController < ApplicationController
 
   def set_article
     @article = Article.find(params[:id])
+  end
+
+  def user_not_authorized
+    redirect_to(request.referrer || root_path)
+    flash[:alert] = "You are not authorized to perform this action."
   end
 end
