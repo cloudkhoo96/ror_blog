@@ -11,7 +11,9 @@
   <strong>Please <%= link_to "sign in", new_user_session_path %> to comment.</strong>
 <% else %>
   <h2>Add a comment</h2>
-  <%= render 'comments/form' %>
+  <%= form_with url:article_comments_path(article_id:@article.id), model: Comment.new do |form| %>
+    <%= render partial: 'comments/form', locals: {f:form} %>
+  <% end %>
 <% end %>
-<h2><% if @article.comments.length > 1 %> Comments <% else %> Comment <% end %>(<%= @article.comments.length %>)</h2>
+<h2><%= "Comment".pluralize(@article.comments.public_count) %></h2>
 <%= render @article.comments %>
