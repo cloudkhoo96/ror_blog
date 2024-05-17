@@ -33,7 +33,18 @@ class Articles::CommentsController < ApplicationController
   def update
     authorize @comment
     if @comment.update(comment_params)
-      redirect_to article_path(@article)
+      respond_to do |format|
+        format.html
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.update(
+              @comment,
+              partial: "comments/comment",
+              locals: { comment: @comment },
+            ),
+          ]
+        end
+      end
     else
       render :edit, status: :unprocessable_entity
     end
@@ -42,7 +53,10 @@ class Articles::CommentsController < ApplicationController
   def destroy
     authorize @comment
     @comment.destroy
-    redirect_to article_path(@article), status: :see_other
+    respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.remove(@comment) }
+      format.html { redirect_to article_path(@article) }
+    end
   end
 
   private
