@@ -1,7 +1,7 @@
 <h1><%= @article.title %></h1>
 <p><%= @article.body %></p>
 <%= display_author(@article.user) %>
-<% if user_signed_in? && current_user == @article.user %>
+<% if user_signed_in? && current_user == @article.user || current_user.admin? %>
   <ul>
     <li><%= link_to "Edit", edit_article_path(@article) %></li>
     <li><%= link_to "Destroy", article_path(@article), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></li>

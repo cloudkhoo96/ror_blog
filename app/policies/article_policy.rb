@@ -1,10 +1,10 @@
 class ArticlePolicy < ApplicationPolicy
 
   def update?
-    user == record.try(:user)
+    user.admin? || record == user
   end
 
   def destroy?
-    user == record.try(:user)
+    user.admin? || record == user
   end
 end
