@@ -1,9 +1,11 @@
-<% unless comment.archived? %>
- <%= display_author(comment.user) %>
-  <p>
-    <strong>Comment:</strong>
-    <%= comment.body %>
-  </p>
+  <% unless comment.archived? %>
+  <%= turbo_frame_tag( dom_id(comment) ) do %>
+    <%= display_author(comment.user) %>
+    <p>
+      <strong>Comment:</strong>
+      <%= comment.body %>
+    </p>
+    <%= link_to "Edit Comment", edit_article_comment_path(article_id: comment.article_id, id: comment.id), data: { turbo_prefetch: false, turbo_stream: true, turbo: true } %>
     <%= link_to "Destroy Comment", [comment.article, comment], data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
-  </p>
+  <% end %> 
 <% end %>

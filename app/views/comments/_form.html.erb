@@ -1,13 +1,11 @@
-<%= form_with url:article_comments_path(article_id:@article.id), model: Comment.new do |form| %>
   <p>
-    <%= form.label :body %><br>
-    <%= form.text_area :body %>
+    <%= f.label :body %><br>
+    <%= f.text_area :body %>
   </p>
   <p>
-    <%= form.label :status %><br>
-    <%= form.select :status, Article.statuses.keys, selected: 'displayed' %>
+    <%= f.label :status %><br>
+    <%= f.select :status, Article.statuses.keys, selected: 'displayed' %>
   </p>
   <p>
-    <%= form.submit %>
+    <%= f.submit %>
   </p>
-<% end %>

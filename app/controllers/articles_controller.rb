@@ -27,6 +27,7 @@ class ArticlesController < ApplicationController
   end
 
   def update
+    authorize @article
     if @article.update(article_params)
       redirect_to @article
     else
@@ -35,10 +36,11 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
+    authorize @article
     @article.destroy
     redirect_to root_path, status: :see_other
   end
-
+  
   private
 
   def article_params
