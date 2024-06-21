@@ -74,3 +74,7 @@ gem "cssbundling-rails", "~> 1.4"
 gem "devise", "~> 4.9"
 
 gem "pundit", "~> 2.3"
+
+gem 'simplecov', require: false, group: :test
+
+gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'main'

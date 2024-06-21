@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/faker-ruby/faker.git
+  revision: 0812ef04463ee9024abbfaaf959ae7759aa82c1e
+  branch: main
+  specs:
+    faker (3.4.1)
+      i18n (>= 1.8.11, < 2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -109,6 +117,7 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.5.1)
+    docile (1.4.0)
     drb (2.2.1)
     erubi (1.12.0)
     factory_bot (6.4.6)
@@ -248,6 +257,12 @@ GEM
       websocket (~> 1.0)
     shoulda-matchers (6.2.0)
       activesupport (>= 5.2.0)
+    simplecov (0.22.0)
+      docile (~> 1.1)
+      simplecov-html (~> 0.11)
+      simplecov_json_formatter (~> 0.1)
+    simplecov-html (0.12.3)
+    simplecov_json_formatter (0.1.4)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -303,6 +318,7 @@ DEPENDENCIES
   debug
   devise (~> 4.9)
   factory_bot_rails
+  faker!
   importmap-rails
   jbuilder
   puma (>= 5.0)
@@ -311,6 +327,7 @@ DEPENDENCIES
   rspec-rails (~> 6.1.0)
   selenium-webdriver
   shoulda-matchers (~> 6.0)
+  simplecov
   sprockets-rails
   sqlite3 (~> 1.4)
   stimulus-rails
