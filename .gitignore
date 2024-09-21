@@ -42,3 +42,6 @@
 /coverage
 
 output.html
+
+/db/test.*
+/db/development.*
