@@ -29,5 +29,25 @@ RSpec.describe User, type: :model do
         expect(user.login).to eq('test@example.com')
       end
     end
+
+    describe '#validate_username' do
+      it 'adds an error if the username matches an existing email' do
+        existing_user = create(:user, email: 'test@example.com')
+        user_with_conflicting_username = build(:user, username: 'test@example.com')
+
+        user_with_conflicting_username.validate
+
+        expect(user_with_conflicting_username.errors[:username]).to include('is invalid')
+      end
+
+      it 'does not add an error if the username is unique' do
+        create(:user, email: 'test@example.com')
+        user_with_unique_username = build(:user, username: 'uniqueusername')
+
+        user_with_unique_username.validate
+
+        expect(user_with_unique_username.errors[:username]).to be_empty
+      end
+    end
   end
 end
