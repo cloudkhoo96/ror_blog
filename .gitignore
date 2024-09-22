@@ -38,3 +38,10 @@
 !/app/assets/builds/.keep
 
 /node_modules
+
+/coverage
+
+output.html
+
+/db/test.*
+/db/development.*
