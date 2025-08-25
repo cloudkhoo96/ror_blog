@@ -4,6 +4,7 @@ class User < ApplicationRecord
 
   has_many :articles, dependent: :nullify
   has_many :comments, dependent: :nullify
+  has_many :article_ratings, dependent: :nullify
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 

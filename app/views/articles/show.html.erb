@@ -1,6 +1,8 @@
 <h1><%= @article.title %></h1>
 <p><%= @article.body %></p>
-<%= display_author(@article.user) %>
+<turbo-frame id="like_count_<%= @article.id %>">
+  <%= render partial: "articles/like_count", locals: { article: @article } %>
+</turbo-frame>
 <% if user_signed_in? && current_user == @article.user || current_user.admin? %>
   <ul>
     <li><%= link_to "Edit", edit_article_path(@article) %></li>
