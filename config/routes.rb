@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   
   resources :articles do
     resources :comments, module: "articles"
-    resources :article_ratings, only: [:create, :destroy], module: :articles
+    resource :article_ratings, only: [:create, :destroy], module: :articles
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

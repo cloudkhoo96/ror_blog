@@ -9,7 +9,6 @@ class Articles::ArticleRatingsController < ApplicationController
 
   def destroy
     @article.article_ratings.find_by(user: current_user).destroy
-    render_turbo_stream_update
   end
 
   private
@@ -21,7 +20,7 @@ class Articles::ArticleRatingsController < ApplicationController
   def render_turbo_stream_update
     respond_to do |format|
       format.turbo_stream {
-        render turbo_stream: turbo_stream.replace(
+        render turbo_stream: turbo_stream.update(
           "like_count_#{@article.id}",
           partial: "articles/like_count",
           locals: { article: @article }
