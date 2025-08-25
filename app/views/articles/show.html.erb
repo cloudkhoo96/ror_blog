@@ -1,5 +1,6 @@
 <h1><%= @article.title %></h1>
 <p><%= @article.body %></p>
+<%= display_author(@article.user) %>
 <turbo-frame id="like_count_<%= @article.id %>">
   <%= render partial: "articles/like_count", locals: { article: @article } %>
 </turbo-frame>
