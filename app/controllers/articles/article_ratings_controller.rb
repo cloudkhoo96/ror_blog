@@ -4,7 +4,6 @@ class Articles::ArticleRatingsController < ApplicationController
 
   def create
     @article.article_ratings.create(user: current_user)
-    render_turbo_stream_update
   end
 
   def destroy
@@ -15,18 +14,5 @@ class Articles::ArticleRatingsController < ApplicationController
 
   def set_article
     @article = Article.find(params[:article_id])
-  end
-
-  def render_turbo_stream_update
-    respond_to do |format|
-      format.turbo_stream {
-        render turbo_stream: turbo_stream.update(
-          "like_count_#{@article.id}",
-          partial: "articles/like_count",
-          locals: { article: @article }
-        )
-      }
-      format.html { redirect_to @article }
-    end
   end
 end
