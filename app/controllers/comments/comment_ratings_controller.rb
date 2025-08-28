@@ -1,4 +1,4 @@
-class Articles::CommentRatingsController < ApplicationController
+class Comments::CommentRatingsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_comment
 
@@ -9,6 +9,7 @@ class Articles::CommentRatingsController < ApplicationController
 
   def destroy
     @comment.comment_ratings.find_by(user: current_user).destroy
+    render_turbo_stream_update
   end
 
   private
@@ -21,7 +22,7 @@ class Articles::CommentRatingsController < ApplicationController
     respond_to do |format|
       format.turbo_stream {
         render turbo_stream: turbo_stream.update(
-          "like_count_#{@comment.id}",
+          "comment_like_count_#{@comment.id}",
           partial: "comments/like_count",
           locals: { comment: @comment }
         )

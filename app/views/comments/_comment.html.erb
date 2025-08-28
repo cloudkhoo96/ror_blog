@@ -5,7 +5,7 @@
       <strong>Comment:</strong>
       <%= comment.body %>
     </p>
-    <turbo-frame id="like_count_<%= comment.id %>">
+    <turbo-frame id="comment_like_count_<%= comment.id %>">
       <%= render partial: "comments/like_count", locals: { comment: comment } %>
     </turbo-frame>
     <%= link_to "Edit Comment", edit_article_comment_path(article_id: comment.article_id, id: comment.id), data: { turbo_prefetch: false, turbo_stream: true, turbo: true } %>
