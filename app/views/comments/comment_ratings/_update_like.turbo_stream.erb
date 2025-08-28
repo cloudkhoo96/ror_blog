@@ -1,0 +1,5 @@
+<%= turbo_stream.update(
+    "comment_like_count_#{@comment.id}",
+    partial: "comments/like_count",
+    locals: { comment: @comment }
+) %>
